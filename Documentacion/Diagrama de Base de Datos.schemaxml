@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schemadesigner version="6.5">
+<source>
+<database charset="latin1" collation="latin1_swedish_ci">gestiondepacientes</database>
+</source>
+<canvas zoom="100">
+<tables>
+<table name="Usuario" view="colnames">
+<left>24</left>
+<top>475</top>
+<width>130</width>
+<height>197</height>
+<sql_create_table>CREATE TABLE `usuario` (
+  `IdUsuario` int(11) NOT NULL AUTO_INCREMENT,
+  `Nombre` varchar(255) NOT NULL,
+  `Apellido` varchar(255) NOT NULL,
+  `NombreUsuario` varchar(255) NOT NULL,
+  `Clave` varchar(255) NOT NULL,
+  `Rol` varchar(255) NOT NULL,
+  `Cedula` varchar(255) NOT NULL,
+  `Telefonos` varchar(255) NOT NULL,
+  `Direccion` varchar(255) NOT NULL,
+  PRIMARY KEY (`IdUsuario`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1</sql_create_table>
+</table>
+<table name="Asistentes" view="colnames">
+<left>214</left>
+<top>539</top>
+<width>102</width>
+<height>97</height>
+<sql_create_table>CREATE TABLE `asistentes` (
+  `IdAsistente` int(11) NOT NULL AUTO_INCREMENT,
+  `IdUsuario` int(11) NOT NULL,
+  PRIMARY KEY (`IdAsistente`),
+  KEY `FK_Asistentes_Usuarios` (`IdUsuario`),
+  CONSTRAINT `FK_Asistentes_Usuarios` FOREIGN KEY (`IdUsuario`) REFERENCES `usuario` (`IdUsuario`) ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=latin1</sql_create_table>
+</table>
+<table name="Medicos" view="colnames">
+<left>205</left>
+<top>391</top>
+<width>120</width>
+<height>114</height>
+<sql_create_table>CREATE TABLE `medicos` (
+  `IdMedico` int(11) NOT NULL AUTO_INCREMENT,
+  `IdUsuario` int(11) NOT NULL,
+  `IdEspecialidad` int(11) NOT NULL,
+  PRIMARY KEY (`IdMedico`),
+  KEY `FK_Medicos_Usuarios` (`IdUsuario`),
+  KEY `FK_Medicos` (`IdEspecialidad`),
+  CONSTRAINT `FK_Medicos` FOREIGN KEY (`IdEspecialidad`) REFERENCES `especialidades` (`IdEspecialidad`) ON UPDATE CASCADE,
+  CONSTRAINT `FK_Medicos_Usuarios` FOREIGN KEY (`IdUsuario`) REFERENCES `usuario` (`IdUsuario`) ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=latin1</sql_create_table>
+</table>
+<table name="Citas" view="colnames">
+<left>27</left>
+<top>254</top>
+<width>98</width>
+<height>165</height>
+<sql_create_table>CREATE TABLE `citas` (
+  `IdCita` int(11) NOT NULL AUTO_INCREMENT,
+  `IdPaciente` int(11) NOT NULL,
+  `Fecha` date NOT NULL,
+  `Hora` time NOT NULL,
+  `IdMedico` int(11) NOT NULL,
+  `CausaCita` varchar(255) NOT NULL,
+  PRIMARY KEY (`IdCita`),
+  KEY `FK_Citas_Medicos` (`IdMedico`),
+  KEY `FK_Citas` (`IdPaciente`),
+  CONSTRAINT `FK_Citas` FOREIGN KEY (`IdPaciente`) REFERENCES `pacientes` (`IdPaciente`) ON UPDATE CASCADE,
+  CONSTRAINT `FK_Citas_Medicos` FOREIGN KEY (`IdMedico`) REFERENCES `medicos` (`IdMedico`) ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=latin1</sql_create_table>
+</table>
+<table name="Pacientes" view="colnames">
+<left>192</left>
+<top>128</top>
+<width>134</width>
+<height>233</height>
+<sql_create_table>CREATE TABLE `pacientes` (
+  `IdPaciente` int(11) NOT NULL AUTO_INCREMENT,
+  `Nombre` varchar(255) NOT NULL,
+  `Apellido` varchar(255) NOT NULL,
+  `Cedula` varchar(255) NOT NULL,
+  `Telefonos` varchar(255) NOT NULL,
+  `Direccion` varchar(255) NOT NULL,
+  `FechaNacimiento` date NOT NULL,
+  `Fumador` tinyint(1) NOT NULL,
+  `IdAlergia` int(11) DEFAULT NULL,
+  `Foto` blob,
+  PRIMARY KEY (`IdPaciente`),
+  KEY `FK_Pacientes` (`IdAlergia`),
+  CONSTRAINT `FK_Pacientes` FOREIGN KEY (`IdAlergia`) REFERENCES `alergias` (`IdAlergia`) ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=latin1</sql_create_table>
+</table>
+<table name="Alergias" view="colnames">
+<left>400</left>
+<top>345</top>
+<width>123</width>
+<height>97</height>
+<sql_create_table>CREATE TABLE `alergias` (
+  `IdAlergia` int(11) NOT NULL AUTO_INCREMENT,
+  `NombreAlergia` varchar(255) NOT NULL,
+  PRIMARY KEY (`IdAlergia`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1</sql_create_table>
+</table>
+<table name="Especialidades" view="colnames">
+<left>398</left>
+<top>469</top>
+<width>153</width>
+<height>97</height>
+<sql_create_table>CREATE TABLE `especialidades` (
+  `IdEspecialidad` int(11) NOT NULL AUTO_INCREMENT,
+  `NombreEspecialidad` varchar(255) NOT NULL,
+  PRIMARY KEY (`IdEspecialidad`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1</sql_create_table>
+</table>
+<table name="Recetas" view="colnames">
+<left>388</left>
+<top>8</top>
+<width>126</width>
+<height>131</height>
+<sql_create_table>CREATE TABLE `recetas` (
+  `IdReceta` int(11) NOT NULL AUTO_INCREMENT,
+  `IdPaciente` int(11) NOT NULL,
+  `IdPadecimiento` int(11) NOT NULL,
+  `IdMedicamento` int(11) NOT NULL,
+  PRIMARY KEY (`IdReceta`),
+  KEY `FK_Recetas_Padecimientos` (`IdPadecimiento`),
+  KEY `FK_Recetas_Pacientes` (`IdPaciente`),
+  KEY `FK_Recetas` (`IdMedicamento`),
+  CONSTRAINT `FK_Recetas` FOREIGN KEY (`IdMedicamento`) REFERENCES `medicamentos` (`IdMedicamento`) ON UPDATE CASCADE,
+  CONSTRAINT `FK_Recetas_Pacientes` FOREIGN KEY (`IdPaciente`) REFERENCES `pacientes` (`IdPaciente`) ON UPDATE CASCADE,
+  CONSTRAINT `FK_Recetas_Padecimientos` FOREIGN KEY (`IdPadecimiento`) REFERENCES `padecimientos` (`IdPadecimiento`) ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=latin1</sql_create_table>
+</table>
+<table name="Padecimientos" view="colnames">
+<left>583</left>
+<top>-5</top>
+<width>159</width>
+<height>97</height>
+<sql_create_table>CREATE TABLE `padecimientos` (
+  `IdPadecimiento` int(11) NOT NULL AUTO_INCREMENT,
+  `NombrePadecimiento` varchar(255) NOT NULL,
+  PRIMARY KEY (`IdPadecimiento`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1</sql_create_table>
+</table>
+<table name="Medicamentos" view="colnames">
+<left>595</left>
+<top>102</top>
+<width>158</width>
+<height>97</height>
+<sql_create_table>CREATE TABLE `medicamentos` (
+  `IdMedicamento` int(11) NOT NULL AUTO_INCREMENT,
+  `NombreMedicamento` varchar(11) NOT NULL,
+  PRIMARY KEY (`IdMedicamento`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1</sql_create_table>
+</table>
+<table name="PruebasLab" view="colnames">
+<left>596</left>
+<top>234</top>
+<width>143</width>
+<height>97</height>
+<sql_create_table>CREATE TABLE `pruebaslab` (
+  `IdPruebaLab` int(11) NOT NULL AUTO_INCREMENT,
+  `NombrePruebaLab` varchar(255) NOT NULL,
+  PRIMARY KEY (`IdPruebaLab`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1</sql_create_table>
+</table>
+<table name="ResultadosPruebasLab" view="colnames">
+<left>385</left>
+<top>217</top>
+<width>166</width>
+<height>114</height>
+<sql_create_table>CREATE TABLE `resultadospruebaslab` (
+  `IdResultadoPruebaLab` int(11) NOT NULL AUTO_INCREMENT,
+  `IdPruebaLab` int(11) NOT NULL,
+  `IdPaciente` int(11) NOT NULL,
+  PRIMARY KEY (`IdResultadoPruebaLab`),
+  KEY `FK_ResultadosPruebasLab_Pacientes` (`IdPaciente`),
+  KEY `FK_ResultadosPruebasLab_Pruebas` (`IdPruebaLab`),
+  CONSTRAINT `FK_ResultadosPruebasLab_Pruebas` FOREIGN KEY (`IdPruebaLab`) REFERENCES `pruebaslab` (`IdPruebaLab`) ON UPDATE CASCADE,
+  CONSTRAINT `FK_ResultadosPruebasLab_Pacientes` FOREIGN KEY (`IdPaciente`) REFERENCES `pacientes` (`IdPaciente`) ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=latin1</sql_create_table>
+</table>
+</tables>
+</canvas>
+</schemadesigner>
