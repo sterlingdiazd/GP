@@ -32,7 +32,6 @@ public class UserTableModel extends AbstractTableModel {
 	controladorUsuario = new ControladorUsuario();
     }
     
-    
     @Override
     public int getColumnCount() {
 	return encabezados.length;

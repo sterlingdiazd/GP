@@ -25,7 +25,7 @@ public class ControladorVistaPrincipal implements ActionListener, MouseListener{
     public void actionPerformed(ActionEvent e) {
 	
 	if(e.getSource().equals(vp.getMntmIniciarSesion())){
-	    VistaInicioSesion vi = new VistaInicioSesion();
+	    VistaInicioSesion vi = new VistaInicioSesion(vp);
 	    vi.setLocationRelativeTo(vp);
 	    vi.setVisible(true);
 	    
@@ -39,21 +39,18 @@ public class ControladorVistaPrincipal implements ActionListener, MouseListener{
 
     @Override
     public void mouseClicked(MouseEvent arg0) {
-	// TODO Auto-generated method stub
 	
     }
 
 
     @Override
     public void mouseEntered(MouseEvent arg0) {
-	// TODO Auto-generated method stub
 	
     }
 
 
     @Override
     public void mouseExited(MouseEvent arg0) {
-	// TODO Auto-generated method stub
 	
     }
 
@@ -61,7 +58,7 @@ public class ControladorVistaPrincipal implements ActionListener, MouseListener{
     @Override
     public void mousePressed(MouseEvent e) {
 	if(e.getSource().equals(vp.getPanel())){
-	    VistaInicioSesion vi = new VistaInicioSesion();
+	    VistaInicioSesion vi = new VistaInicioSesion(vp);
 	    vi.setLocationRelativeTo(vp);
 	    vi.setVisible(true);
 	}
@@ -71,7 +68,6 @@ public class ControladorVistaPrincipal implements ActionListener, MouseListener{
 
     @Override
     public void mouseReleased(MouseEvent arg0) {
-	// TODO Auto-generated method stub
 	
     }
 }

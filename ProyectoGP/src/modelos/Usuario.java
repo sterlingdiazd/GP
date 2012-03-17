@@ -2,7 +2,7 @@ package modelos;
 
 public class Usuario {
     
-    private int 	IdUsuario;
+    private String 	IdUsuario;
     private String	Nombre;
     private String	Apellido;
     private String	NombreUsuario;
@@ -12,7 +12,7 @@ public class Usuario {
     private String	Telefonos;
     private String	Direccion;
     
-    public Usuario(int idUsuario, String nombre, String apellido,
+    public Usuario(String idUsuario, String nombre, String apellido,
 	    String nombreUsuario, String clave, String rol, String cedula,
 	    String telefonos, String direccion) {
 	super();
@@ -91,7 +91,7 @@ public class Usuario {
         Direccion = direccion;
     }
 
-    public int getIdUsuario() {
+    public String getIdUsuario() {
         return IdUsuario;
     }   
     
