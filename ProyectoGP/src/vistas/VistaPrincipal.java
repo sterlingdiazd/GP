@@ -12,8 +12,9 @@ import javax.swing.SwingConstants;
 import java.awt.Toolkit;
 import javax.swing.ImageIcon;
 import java.awt.Font;
-import javax.swing.BoxLayout;
 import java.awt.FlowLayout;
+import javax.swing.border.TitledBorder;
+import java.awt.Color;
 
 public class VistaPrincipal extends JFrame {
 
@@ -37,7 +38,6 @@ public class VistaPrincipal extends JFrame {
     	setTitle("Sistema Gestor de Pacientes v.1.0");
 	
 	initComponents();
-	
 	
 	cvp = new ControladorVistaPrincipal(this);
 	mntmIniciarSesion.addActionListener(cvp);
@@ -72,27 +72,27 @@ public class VistaPrincipal extends JFrame {
 	contentPane.add(lblBlusycamisV);
 	
 	panel = new JPanel();
-	panel.setBounds(10, 71, 824, 172);
+	panel.setBounds(10, 71, 824, 268);
 	contentPane.add(panel);
 	FlowLayout fl_panel = new FlowLayout(FlowLayout.CENTER, 5, 5);
 	panel.setLayout(fl_panel);
 	
+	JPanel panel_3 = new JPanel();
+	panel.add(panel_3);
+	panel_3.setBorder(new TitledBorder(null, "Click para iniciar sesion", TitledBorder.LEADING, TitledBorder.TOP, null, Color.GRAY));
+	FlowLayout flowLayout = (FlowLayout) panel_3.getLayout();
+	flowLayout.setVgap(20);
+	flowLayout.setHgap(10);
+	
 	JLabel lblNewLabel = new JLabel("");
+	panel_3.add(lblNewLabel);
 	lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 	lblNewLabel.setIcon(new ImageIcon(VistaPrincipal.class.getResource("/imagenes/1329440782_kcmdrkonqi.png")));
-	panel.add(lblNewLabel);
 	
 	JLabel label_1 = new JLabel("Sistema Gestor de Pacientes");
+	panel_3.add(label_1);
 	label_1.setHorizontalAlignment(SwingConstants.CENTER);
-	panel.add(label_1);
 	label_1.setFont(new Font("Calibri", Font.BOLD, 30));
-	
-	JPanel panel_1 = new JPanel();
-	panel_1.setBounds(10, 283, 824, 57);
-	contentPane.add(panel_1);
-	
-	JLabel label = new JLabel("");
-	panel_1.add(label);
 	
 	JMenuBar menuBar = new JMenuBar();
 	setJMenuBar(menuBar);

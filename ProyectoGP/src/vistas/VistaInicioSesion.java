@@ -24,7 +24,7 @@ public class VistaInicioSesion extends JDialog {
     private JButton btnIniciarSesion;
     private JButton btnLimpiar;
    
-    public VistaInicioSesion() {
+    public VistaInicioSesion(VistaPrincipal VP) {
 	
     	setResizable(false);
 	setModal(true);
@@ -35,7 +35,7 @@ public class VistaInicioSesion extends JDialog {
 	
 	initComponentes();
 	
-	controladorVistaIC = new ControladorVistaInicioSesion(this);
+	controladorVistaIC = new ControladorVistaInicioSesion(this, VP);
 	btnIniciarSesion.addActionListener(controladorVistaIC);	
 	btnLimpiar.addActionListener(controladorVistaIC);
     }

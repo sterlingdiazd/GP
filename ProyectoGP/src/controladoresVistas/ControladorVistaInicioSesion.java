@@ -2,26 +2,37 @@ package controladoresVistas;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+
+import modelos.Usuario;
 import vistas.PerfilAdministrador;
 import vistas.VistaInicioSesion;
-import controladores.ControladorInicioSesion;
+import vistas.VistaPrincipal;
+import controladores.ControladorAutentificacion;
+import controladores.ControladorUsuario;
 import enums.Roles;
 
 public class ControladorVistaInicioSesion implements ActionListener{
-    
-    private ControladorInicioSesion controladorInicioSesion;
+
+    private ControladorAutentificacion controladorAutentificacion;
+    private ControladorUsuario controladorUsuario;
     private VistaInicioSesion VistaIC;
-    private String usuario;
+    private VistaPrincipal VP;
+    private String nombreUsuario;
     private char[] clave;
     private String claveIntroducidaEnString;
-    
-    public ControladorVistaInicioSesion(VistaInicioSesion VistaIC){
+
+    public ControladorVistaInicioSesion(VistaInicioSesion VistaIC, VistaPrincipal VP){
 	super();
 	this.VistaIC = VistaIC;
+	this.VP = VP;
+	controladorUsuario = new ControladorUsuario();
+	controladorAutentificacion = new ControladorAutentificacion();
     }
-    
+
     /**
      * Borra los datos de los campos asignados.
      */
@@ -29,52 +40,61 @@ public class ControladorVistaInicioSesion implements ActionListener{
 	VistaIC.setTxtUsuarioInicioSesion("");
 	VistaIC.setPasswordFieldInicioSesion((char) 0);
     }
-    
+
     @Override
     public void actionPerformed(ActionEvent e) {
-	
+
 	//Si le dan a borrar
 	if(e.getSource().equals(VistaIC.getBtnLimpiar())){
-	   LimpiarCampos();
+	    LimpiarCampos();
 	}
-	
+
 	//Si le dan a entrar
 	if(e.getSource().equals(VistaIC.getBtnIniciarSesion())){
 	    
-	    //Guardar datos introducidos por el usuario en la vista, en la variable usuario de esta clase
-	    usuario = VistaIC.getTxtUsuarioInicioSesion().getText();
+	    nombreUsuario = VistaIC.getTxtUsuarioInicioSesion().getText();
 	    clave = VistaIC.getPasswordFieldInicioSesion().getPassword();
 	    claveIntroducidaEnString = String.valueOf(clave);
 
-	    //Si los datos no estan en blanco
-	    if(!usuario.equalsIgnoreCase("") || !claveIntroducidaEnString.equalsIgnoreCase("")){
-		
-		//Usar el controlador de inicio sesion para verificar si esos datos estan en la base de datos
-		controladorInicioSesion = new ControladorInicioSesion();
-		boolean estaEnLaBaseDeDatos = controladorInicioSesion.autentificarUsuario(usuario, claveIntroducidaEnString);
+	    if(!nombreUsuario.equalsIgnoreCase("") || !claveIntroducidaEnString.equalsIgnoreCase("") ){
+
+		//Guardar datos introducidos por el nombreUsuario en la vista
+
+		Usuario usuario = new Usuario( "", "", "", nombreUsuario, claveIntroducidaEnString, "", "", "", "" );
+		ArrayList<Object> usuariosAutentificados = controladorUsuario.buscarPorParametro(usuario);
+
+		boolean estaEnLaBaseDeDatos = controladorAutentificacion.autentificarUsuario(usuario, usuariosAutentificados);
 		
 		//Si esta en la base de datos
 		if(estaEnLaBaseDeDatos){
-		    
-		    // Si el usuario es administrador, abrir su vista de perfil
-		    if(controladorInicioSesion.getUser().getRol().equalsIgnoreCase(Roles.ADMINISTRADOR.getText())){ 
-    		        JOptionPane.showMessageDialog(null, "Bienvenido al perfil de Administrador", "Usuario Autentificado" , JOptionPane.INFORMATION_MESSAGE );
-    		        new PerfilAdministrador();
-    			VistaIC.dispose();
-    			
-    		    } else if(controladorInicioSesion.getUser().getRol().equalsIgnoreCase(Roles.MEDICO.getText())) { // Si es el Medico, abrir el suyo
-    		        JOptionPane.showMessageDialog(null, "Ingresando al perfil de Medico", "Perfil de Supervisor", JOptionPane.INFORMATION_MESSAGE );
-    		    } else { // Entonces es cajero, y abrir el suyo
-    		        JOptionPane.showMessageDialog(null, "Ingresando al perfil de Asistente", "Perfil de Cajero", JOptionPane.INFORMATION_MESSAGE );
-    		    }
+
+		    String usuarioAutentificado = controladorAutentificacion.getUsuario().getRol();
+
+		    // Si el nombreUsuario es administrador, abrir su vista de perfil
+		    if(usuarioAutentificado.equalsIgnoreCase(Roles.ADMINISTRADOR.getText())){
+
+			JOptionPane.showMessageDialog(null, "Bienvenido al perfil de Administrador", "Usuario Autentificado" , JOptionPane.INFORMATION_MESSAGE );
+			VistaIC.dispose();
+			VP.dispose();
+			new PerfilAdministrador();
+
+		    } else if(usuarioAutentificado.equalsIgnoreCase(Roles.MEDICO.getText())) { // Si es el Medico, abrir el suyo
+
+			JOptionPane.showMessageDialog(null, "Ingresando al perfil de Medico", "Perfil de Supervisor", JOptionPane.INFORMATION_MESSAGE );
+
+		    } else { // Entonces es cajero, y abrir el suyo
+
+			JOptionPane.showMessageDialog(null, "Ingresando al perfil de Asistente", "Perfil de Cajero", JOptionPane.INFORMATION_MESSAGE );
+
+		    }
 		}
 	    } else {
 		JOptionPane.showMessageDialog(VistaIC, "Introduzca sus datos de acceso", "Adventencia", JOptionPane.ERROR_MESSAGE, new ImageIcon(ControladorAgregarUsuario.class.getResource("/imagenes/warning_mini.png")) );
-	}
+	    }
 	} 
     }
-	
+
 }
-    
-    
+
+
 
