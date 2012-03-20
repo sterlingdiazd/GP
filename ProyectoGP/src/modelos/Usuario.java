@@ -1,19 +1,18 @@
 package modelos;
 
-public class Usuario {
+public abstract class Usuario {
     
-    private String 	IdUsuario;
+    private String 	IdEmpleado;
     private String	Nombre;
     private String	Apellido;
     private String	NombreUsuario;
     private String 	Clave;
-    private String	Rol;
     private String	Cedula;
     private String	Telefonos;
     private String	Direccion;
     
     public Usuario(String idUsuario, String nombre, String apellido,
-	    String nombreUsuario, String clave, String rol, String cedula,
+	    String nombreUsuario, String clave, String cedula,
 	    String telefonos, String direccion) {
 	super();
 	IdUsuario = idUsuario;
@@ -21,7 +20,6 @@ public class Usuario {
 	Apellido = apellido;
 	NombreUsuario = nombreUsuario;
 	Clave = clave;
-	Rol = rol;
 	Cedula = cedula;
 	Telefonos = telefonos;
 	Direccion = direccion;
