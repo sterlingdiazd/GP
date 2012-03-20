@@ -1,98 +1,88 @@
 package modelos;
 
-public class Usuario {
-    
-    private int 	IdUsuario;
-    private String	Nombre;
-    private String	Apellido;
-    private String	NombreUsuario;
-    private String 	Clave;
-    private String	Rol;
-    private String	Cedula;
-    private String	Telefonos;
-    private String	Direccion;
-    
-    public Usuario(int idUsuario, String nombre, String apellido,
-	    String nombreUsuario, String clave, String rol, String cedula,
-	    String telefonos, String direccion) {
-	super();
-	IdUsuario = idUsuario;
-	Nombre = nombre;
-	Apellido = apellido;
-	NombreUsuario = nombreUsuario;
-	Clave = clave;
-	Rol = rol;
-	Cedula = cedula;
-	Telefonos = telefonos;
-	Direccion = direccion;
-    }
+public class Medico {
+	
+		int CodEmpleado;
+		String nombre;
+		String apellido;
+		String telefono;
+		String direccion;
+		String cedula;
+		String especialidad;
+		
+		public Medico() {
+			super();
+			
+		}
 
-    public String getNombre() {
-        return Nombre;
-    }
+		public Medico(int codEmpleado, String nombre, String apellido,
+				String telefono, String direccion, String cedula,
+				String especialidad) {
+			super();
+			CodEmpleado = codEmpleado;
+			this.nombre = nombre;
+			this.apellido = apellido;
+			this.telefono = telefono;
+			this.direccion = direccion;
+			this.cedula = cedula;
+			this.especialidad = especialidad;
+		}
 
-    public void setNombre(String nombre) {
-        Nombre = nombre;
-    }
+		public int getCodEmpleado() {
+			return CodEmpleado;
+		}
 
-    public String getApellido() {
-        return Apellido;
-    }
+		public void setCodEmpleado(int codEmpleado) {
+			CodEmpleado = codEmpleado;
+		}
 
-    public void setApellido(String apellido) {
-        Apellido = apellido;
-    }
+		public String getNombre() {
+			return nombre;
+		}
 
-    public String getNombreUsuario() {
-        return NombreUsuario;
-    }
+		public void setNombre(String nombre) {
+			this.nombre = nombre;
+		}
 
-    public void setNombreUsuario(String nombreUsuario) {
-        NombreUsuario = nombreUsuario;
-    }
+		public String getApellido() {
+			return apellido;
+		}
 
-    public String getClave() {
-        return Clave;
-    }
+		public void setApellido(String apellido) {
+			this.apellido = apellido;
+		}
 
-    public void setClave(String clave) {
-        Clave = clave;
-    }
+		public String getTelefono() {
+			return telefono;
+		}
 
-    public String getRol() {
-        return Rol;
-    }
+		public void setTelefono(String telefono) {
+			this.telefono = telefono;
+		}
 
-    public void setRol(String rol) {
-        Rol = rol;
-    }
+		public String getDireccion() {
+			return direccion;
+		}
 
-    public String getCedula() {
-        return Cedula;
-    }
+		public void setDireccion(String direccion) {
+			this.direccion = direccion;
+		}
 
-    public void setCedula(String cedula) {
-        Cedula = cedula;
-    }
+		public String getCedula() {
+			return cedula;
+		}
 
-    public String getTelefonos() {
-        return Telefonos;
-    }
+		public void setCedula(String cedula) {
+			this.cedula = cedula;
+		}
 
-    public void setTelefonos(String telefonos) {
-        Telefonos = telefonos;
-    }
+		public String getEspecialidad() {
+			return especialidad;
+		}
 
-    public String getDireccion() {
-        return Direccion;
-    }
-
-    public void setDireccion(String direccion) {
-        Direccion = direccion;
-    }
-
-    public int getIdUsuario() {
-        return IdUsuario;
-    }   
+		public void setEspecialidad(String especialidad) {
+			this.especialidad = especialidad;
+		}
+		
     
 }
