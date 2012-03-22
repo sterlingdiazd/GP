@@ -1,96 +1,55 @@
 package modelos;
 
-public abstract class Usuario {
+public class Usuario extends Persona {
+
+    public String 	idUsuario;	// Cambiar el tipo de dato, en la db
+    public String	nombreUsuario;
+    public String 	clave;
+    public String 	rol;
     
-    private String 	IdEmpleado;
-    private String	Nombre;
-    private String	Apellido;
-    private String	NombreUsuario;
-    private String 	Clave;
-    private String	Cedula;
-    private String	Telefonos;
-    private String	Direccion;
-    
-    public Usuario(String idUsuario, String nombre, String apellido,
-	    String nombreUsuario, String clave, String cedula,
+    public Usuario(String idUsuario, String nombre, String apellido, String nombreUsuario, String clave, String rol, String cedula,
 	    String telefonos, String direccion) {
-	super();
-	IdUsuario = idUsuario;
-	Nombre = nombre;
-	Apellido = apellido;
-	NombreUsuario = nombreUsuario;
-	Clave = clave;
-	Cedula = cedula;
-	Telefonos = telefonos;
-	Direccion = direccion;
-    }
-
-    public String getNombre() {
-        return Nombre;
-    }
-
-    public void setNombre(String nombre) {
-        Nombre = nombre;
-    }
-
-    public String getApellido() {
-        return Apellido;
-    }
-
-    public void setApellido(String apellido) {
-        Apellido = apellido;
-    }
-
-    public String getNombreUsuario() {
-        return NombreUsuario;
-    }
-
-    public void setNombreUsuario(String nombreUsuario) {
-        NombreUsuario = nombreUsuario;
-    }
-
-    public String getClave() {
-        return Clave;
-    }
-
-    public void setClave(String clave) {
-        Clave = clave;
-    }
-
-    public String getRol() {
-        return Rol;
-    }
-
-    public void setRol(String rol) {
-        Rol = rol;
-    }
-
-    public String getCedula() {
-        return Cedula;
-    }
-
-    public void setCedula(String cedula) {
-        Cedula = cedula;
-    }
-
-    public String getTelefonos() {
-        return Telefonos;
-    }
-
-    public void setTelefonos(String telefonos) {
-        Telefonos = telefonos;
-    }
-
-    public String getDireccion() {
-        return Direccion;
-    }
-
-    public void setDireccion(String direccion) {
-        Direccion = direccion;
+	super(nombre, apellido, cedula, telefonos, direccion);
+	this.idUsuario = idUsuario;
+	this.nombreUsuario = nombreUsuario;
+	this.clave = clave;
+	this.rol = rol;
     }
 
     public String getIdUsuario() {
-        return IdUsuario;
-    }   
+        return idUsuario;
+    }
+
+    public void setIdUsuario(String idUsuario) {
+        this.idUsuario = idUsuario;
+    }
+
+    public String getNombreUsuario() {
+        return nombreUsuario;
+    }
+
+    public void setNombreUsuario(String nombreUsuario) {
+        this.nombreUsuario = nombreUsuario;
+    }
+
+    public String getClave() {
+        return clave;
+    }
+
+    public void setClave(String clave) {
+        this.clave = clave;
+    }
     
+    public String getRol() {
+        return rol;
+    }
+
+    public void setRol(String rol) {
+        this.rol = rol;
+    }
+
+    
+    
+
+
 }

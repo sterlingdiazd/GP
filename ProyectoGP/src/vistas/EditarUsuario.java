@@ -270,7 +270,7 @@ public class EditarUsuario extends JDialog {
 	btnCancelar.setIcon(new ImageIcon(EditarUsuario.class.getResource("/imagenes/delete copia.png")));
 	panel.add(btnCancelar);
 	
-	controladorEditarUsuario = new ControladorEditarUsuario(this);
+	//controladorEditarUsuario = new ControladorEditarUsuario(this);
 	
 	
 	btnEditar.addActionListener(controladorEditarUsuario); 

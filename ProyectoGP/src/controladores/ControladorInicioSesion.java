@@ -30,7 +30,7 @@ public class ControladorInicioSesion extends ConexionHeredada {
     public boolean autentificarUsuario(String nombreUsuario, String claveIntroducidaEnString){
 	
 	boolean autentificado = false;
-	Usuario usuario = new Usuario(0, null, null, nombreUsuario, claveIntroducidaEnString, null, null, null, null);
+	Usuario usuario = new Usuario(null, null, null, nombreUsuario, claveIntroducidaEnString, null, null, null, null);
 	usuarioInicioSesion = controladorUsuario.buscarPorParametro(usuario);
 	
 	 for(int x = 0; x < usuarioInicioSesion.size(); x++){

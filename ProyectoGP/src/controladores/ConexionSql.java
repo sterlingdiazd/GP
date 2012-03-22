@@ -28,7 +28,6 @@ public class ConexionSql {
     public void connect() {
 	
 	try {
-	    System.out.println(datosConexion.getDriver());
 	    Class.forName(datosConexion.getDriver()).newInstance();
 	    conn = DriverManager.getConnection(datosConexion.getUrl(), datosConexion.getUser(), datosConexion.getPassword());
 	} catch (NullPointerException e){ 
