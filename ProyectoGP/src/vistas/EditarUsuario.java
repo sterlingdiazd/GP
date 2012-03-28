@@ -74,7 +74,7 @@ public class EditarUsuario extends JDialog {
     	setModal(true);
     	setResizable(false);
     	setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-    	setTitle("Editar Usuario");
+    	setTitle("Editar Administrador");
 	setBounds(100, 100, 460, 403);
 	getContentPane().setLayout(new BorderLayout());
 	contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -87,7 +87,7 @@ public class EditarUsuario extends JDialog {
 		contentPanel.add(panel);
 		panel.setLayout(null);
 		
-		JLabel lblIdUsuario = new JLabel("Id Usuario");
+		JLabel lblIdUsuario = new JLabel("Id Administrador");
 		lblIdUsuario.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblIdUsuario.setBounds(10, 28, 80, 14);
 		panel.add(lblIdUsuario);
@@ -97,7 +97,7 @@ public class EditarUsuario extends JDialog {
 		panel.add(txtIdusuario);
 		txtIdusuario.setColumns(10);
 		
-		JLabel lblNombreDeUsuario = new JLabel("Nombre Usuario");
+		JLabel lblNombreDeUsuario = new JLabel("Nombre Administrador");
 		lblNombreDeUsuario.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblNombreDeUsuario.setBounds(10, 59, 80, 14);
 		panel.add(lblNombreDeUsuario);
@@ -259,7 +259,7 @@ public class EditarUsuario extends JDialog {
 	panel.setBounds(10, 300, 434, 60);
 	FlowLayout flowLayout = (FlowLayout) panel.getLayout();
 	flowLayout.setVgap(-3);
-	panel.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "Editar Usuario", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+	panel.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "Editar Administrador", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 	contentPanel.add(panel);
 	
 	btnEditar = new JButton("Editar");

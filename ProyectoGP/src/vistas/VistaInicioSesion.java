@@ -79,7 +79,7 @@ public class VistaInicioSesion extends JDialog {
 	contentPane.add(panel);
 	panel.setLayout(null);
 	
-	JLabel lblUsuario = new JLabel("Usuario");
+	JLabel lblUsuario = new JLabel("Administrador");
 	lblUsuario.setBounds(30, 35, 100, 14);
 	panel.add(lblUsuario);
 	

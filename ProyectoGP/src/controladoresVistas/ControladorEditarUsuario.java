@@ -10,7 +10,7 @@ import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import javax.swing.border.TitledBorder;
 
-import modelos.Usuario;
+import modelos.Administrador;
 import vistas.AgregarUsuario;
 import vistas.PerfilAdministrador;
 import controladores.ControladorAutentificacion;
@@ -20,7 +20,7 @@ public class ControladorEditarUsuario implements ActionListener {
     private PerfilAdministrador perfilAdministrador;
     private AgregarUsuario editarUsuario;
     private ControladorUsuario controladorUsuario = new ControladorUsuario();
-    private Usuario usuarioPorEditar;
+    private Administrador usuarioPorEditar;
 
     public ControladorEditarUsuario(PerfilAdministrador perfilAdministrador, AgregarUsuario editarUsuario) {
 	this.perfilAdministrador = perfilAdministrador;

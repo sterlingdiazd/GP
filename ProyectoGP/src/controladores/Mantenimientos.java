@@ -8,6 +8,7 @@ public interface Mantenimientos {
     public void modificar(Object o);
     public void eliminar(Object o);
     public ArrayList<Object> buscarTodo();
-    public ArrayList<Object> buscarPorParametro(Object o);
+    public ArrayList<Object> buscarPorNombreUsuarioYClave(Object o);
+    public ArrayList<Object> buscarPorAtributo(Object o);
     
 }

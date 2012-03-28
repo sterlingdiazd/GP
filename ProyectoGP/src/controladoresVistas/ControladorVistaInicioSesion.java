@@ -7,18 +7,19 @@ import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
-import modelos.Usuario;
+import modelos.Administrador;
 import vistas.PerfilAdministrador;
 import vistas.VistaInicioSesion;
 import vistas.VistaPrincipal;
+import controladores.ControladorAdministrador;
 import controladores.ControladorAutentificacion;
-import controladores.ControladorUsuario;
+import controladores.ControladorGenerico;
 import enums.Roles;
 
 public class ControladorVistaInicioSesion implements ActionListener{
 
     private ControladorAutentificacion controladorAutentificacion;
-    private ControladorUsuario controladorUsuario;
+    private ControladorGenerico controlador;
     private VistaInicioSesion VistaIC;
     private VistaPrincipal VP;
     private String nombreUsuario;
@@ -29,7 +30,7 @@ public class ControladorVistaInicioSesion implements ActionListener{
 	super();
 	this.VistaIC = VistaIC;
 	this.VP = VP;
-	controladorUsuario = new ControladorUsuario();
+	controlador = new ControladorAdministrador();
 	controladorAutentificacion = new ControladorAutentificacion();
     }
 
@@ -60,8 +61,8 @@ public class ControladorVistaInicioSesion implements ActionListener{
 
 		//Guardar datos introducidos por el nombreUsuario en la vista
 
-		Usuario usuario = new Usuario( "", "", "", nombreUsuario, claveIntroducidaEnString, "", "", "", "" );
-		ArrayList<Object> usuariosAutentificados = controladorUsuario.buscarPorParametro(usuario);
+		Administrador usuario = new Administrador( "", "", "", nombreUsuario, claveIntroducidaEnString, "", "", "", "" );
+		ArrayList<Object> usuariosAutentificados = controlador.buscarPorNombreUsuarioYClave(usuario);
 
 		boolean estaEnLaBaseDeDatos = controladorAutentificacion.autentificarUsuario(usuario, usuariosAutentificados);
 		
@@ -73,7 +74,7 @@ public class ControladorVistaInicioSesion implements ActionListener{
 		    // Si el nombreUsuario es administrador, abrir su vista de perfil
 		    if(usuarioAutentificado.equalsIgnoreCase(Roles.ADMINISTRADOR.getText())){
 
-			JOptionPane.showMessageDialog(null, "Bienvenido al perfil de Administrador", "Usuario Autentificado" , JOptionPane.INFORMATION_MESSAGE );
+			JOptionPane.showMessageDialog(null, "Bienvenido al perfil de Administrador", "Administrador Autentificado" , JOptionPane.INFORMATION_MESSAGE );
 			VistaIC.dispose();
 			VP.dispose();
 			new PerfilAdministrador();

@@ -10,11 +10,6 @@ import vistas.VistaPrincipal;
 public class ControladorVistaPrincipal implements ActionListener, MouseListener{
 
     private VistaPrincipal vp;
-    /*
-    private EditarUsuario editarUsuario;
-    private AgregarUsuario agregarUsuario;
-    //private ControladorUsuario controladorUsuario;
-    */
     
     public ControladorVistaPrincipal(VistaPrincipal vp){
 	this.vp = vp;

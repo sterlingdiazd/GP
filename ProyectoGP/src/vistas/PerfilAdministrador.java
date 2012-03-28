@@ -14,11 +14,11 @@ public class PerfilAdministrador extends JDialog {
      * Version 1.0 Modulo de Usuarios
      */
     private static final long serialVersionUID = 1L;
-
     private final JPanel contentPanel = new JPanel();
     private JTable table;
     private UserTableModel userTableModel;
     private ArrayList<Object> allUsers;
+
     private ControladorUsuario controladorUsuario;
     private ControladorPerfilAdministrador controladorPerfilAdministrador;
     private JButton btnBuscar;
@@ -35,8 +35,7 @@ public class PerfilAdministrador extends JDialog {
 
 	setModal(true);
 	setResizable(false);
-
-	setTitle("Perfil Administrador - Blusycamis");
+	setTitle("Perfil Administrador - Sistema Gestor de Pacientes");
 	setFont(new Font("Cal+ibri", Font.PLAIN, 12));
 	setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 	setBounds(100, 100, 800,600);
@@ -45,14 +44,12 @@ public class PerfilAdministrador extends JDialog {
 	cargarTabla();
 	configurarTablaAndScrollPane();
 	initComponents();
-	
-	
-	
 
 	controladorPerfilAdministrador = new ControladorPerfilAdministrador(this);
 	btnAgregar.addActionListener(controladorPerfilAdministrador);
 	btnEditar.addActionListener(controladorPerfilAdministrador);
 	btnBuscar.addActionListener(controladorPerfilAdministrador);
+	txtBuscar.addInputMethodListener(controladorPerfilAdministrador);
 	btnEliminar.addActionListener(controladorPerfilAdministrador);
 	mntmCerrarSesion.addActionListener(controladorPerfilAdministrador);
 	mntmSalir.addActionListener(controladorPerfilAdministrador);
@@ -76,7 +73,7 @@ public class PerfilAdministrador extends JDialog {
     }
 
     public void configurarTablaAndScrollPane(){
-	
+
 	table = new JTable();
 	table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 	table.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
@@ -85,7 +82,7 @@ public class PerfilAdministrador extends JDialog {
 	table.setPreferredScrollableViewportSize(new Dimension(1000, 400));
 	table.setAutoCreateRowSorter(true);
 	table.setModel(userTableModel);
-	
+
 	scrollPane = new JScrollPane();
 	scrollPane.setAutoscrolls(true);
 	scrollPane.setEnabled(false);
@@ -106,7 +103,7 @@ public class PerfilAdministrador extends JDialog {
 	panel_2.setBounds(new Rectangle(1000, 0, 0, 0));
 	panel_2.setSize(new Dimension(1500, 0));
 	panel_2.setToolTipText("Usuarios");
-	tabbedPane.addTab("Usuarios", new ImageIcon(PerfilAdministrador.class.getResource("/imagenes/users.png")), panel_2, "Mantenimiento de Usuarios");
+	tabbedPane.addTab("Usuarios", new ImageIcon(PerfilAdministrador.class.getResource("/imagenes/usuario.png")), panel_2, "Mantenimiento de Usuarios");
 	tabbedPane.setDisplayedMnemonicIndexAt(0, 1);
 	tabbedPane.setMnemonicAt(0, 1);
 	panel_2.setLayout(null);
@@ -140,14 +137,14 @@ public class PerfilAdministrador extends JDialog {
 	btnEliminar.setIcon(new ImageIcon(PerfilAdministrador.class.getResource("/imagenes/delete copia.png")));
 	panel_1.add(btnEliminar);
 
-	btnBuscar = new JButton("Buscar");
-	btnBuscar.setIcon(new ImageIcon(PerfilAdministrador.class.getResource("/imagenes/search.png")));
-	panel_1.add(btnBuscar);
-
 	txtBuscar = new JTextField();
 	txtBuscar.setText(null);
 	panel_1.add(txtBuscar);
 	txtBuscar.setColumns(10);
+
+	btnBuscar = new JButton("Buscar");
+	btnBuscar.setIcon(new ImageIcon(PerfilAdministrador.class.getResource("/imagenes/search.png")));
+	panel_1.add(btnBuscar);
 
 
 	JPanel panel_3 = new JPanel();
@@ -185,11 +182,11 @@ public class PerfilAdministrador extends JDialog {
     }
 
     public JScrollPane getScrollPane() {
-        return scrollPane;
+	return scrollPane;
     }
 
     public void setScrollPane(JScrollPane scrollPane) {
-        this.scrollPane = scrollPane;
+	this.scrollPane = scrollPane;
     }
 
     public UserTableModel getUserTableModel() {
@@ -234,6 +231,14 @@ public class PerfilAdministrador extends JDialog {
 
     public void setTable(JTable table) {
 	this.table = table;
+    }
+
+    public ArrayList<Object> getAllUsers() {
+	return allUsers;
+    }
+
+    public void setAllUsers(ArrayList<Object> allUsers) {
+	this.allUsers = allUsers;
     }
 
 }

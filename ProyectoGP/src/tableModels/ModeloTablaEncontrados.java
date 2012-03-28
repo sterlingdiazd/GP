@@ -2,6 +2,7 @@ package tableModels;
 
 import controladores.ControladorAdministrador;
 import controladores.ControladorGenerico;
+import controladores.ControladorUsuario;
 import java.util.ArrayList;
 
 import javax.swing.table.AbstractTableModel;
@@ -11,12 +12,12 @@ import enums.Usuarios;
 import modelos.Administrador;
 
 /**
- * Table Model for the Administrador Table.
+ * Table Model for the Encontrados.
  * @author Sterling Diaz
  * @author sterlingdiazd@gmail.com
  * @version v1.0 Modulo de Administrador
  */
-public class UserTableModel extends AbstractTableModel {
+public class ModeloTablaEncontrados extends AbstractTableModel {
     
     private static final long serialVersionUID = 1L;
    
@@ -27,7 +28,7 @@ public class UserTableModel extends AbstractTableModel {
 	    Usuarios.NOMBREUSUARIOS.getText(), Usuarios.CLAVE.getText(), Usuarios.ROL.getText(), 
 	    Usuarios.CEDULA.getText(), Usuarios.TELEFONOS.getText(), Usuarios.DIRECCION.getText()};
     
-    public UserTableModel(ArrayList<Object> allUsers){
+    public ModeloTablaEncontrados(ArrayList<Object> allUsers){
 	super(); 
 	this.allUsers = allUsers;
 	controlador = new ControladorAdministrador();
@@ -45,8 +46,7 @@ public class UserTableModel extends AbstractTableModel {
 
     @Override
     public int getRowCount() {
-	allUsers = new ArrayList<Object>();
-	allUsers = controlador.buscarTodo();
+	
 	return allUsers.size();
     }
 

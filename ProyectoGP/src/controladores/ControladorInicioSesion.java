@@ -2,7 +2,7 @@ package controladores;
 
 import java.util.ArrayList;
 
-import modelos.Usuario;
+import modelos.Administrador;
 import javax.swing.JOptionPane;
 
 
@@ -17,27 +17,27 @@ public class ControladorInicioSesion extends ConexionHeredada {
     @SuppressWarnings("unused") // No se usa en esta clase, porque en el constructor de la clase que instancia, se utiliza y transforma. Otras variables transformadas por esta variables, si se utilizan.
     private ConexionHeredada conexion = new ConexionHeredada();
     private ControladorUsuario controladorUsuario;
-    private Usuario user;
+    private Administrador user;
     private ArrayList<Object> usuarioInicioSesion;
-    private ArrayList<Usuario> usuarioInicioSesionUSUARIO;
+    private ArrayList<Administrador> usuarioInicioSesionUSUARIO;
     
     public ControladorInicioSesion(){
 	controladorUsuario = new ControladorUsuario();
 	usuarioInicioSesion =  new ArrayList<Object>();
-	usuarioInicioSesionUSUARIO = new ArrayList<Usuario>();
+	usuarioInicioSesionUSUARIO = new ArrayList<Administrador>();
     }
 
     public boolean autentificarUsuario(String nombreUsuario, String claveIntroducidaEnString){
 	
 	boolean autentificado = false;
-	Usuario usuario = new Usuario(null, null, null, nombreUsuario, claveIntroducidaEnString, null, null, null, null);
-	usuarioInicioSesion = controladorUsuario.buscarPorParametro(usuario);
+	Administrador usuario = new Administrador(null, null, null, nombreUsuario, claveIntroducidaEnString, null, null, null, null);
+	usuarioInicioSesion = controladorUsuario.buscarPorNombreUsuarioYClave(usuario);
 	
 	 for(int x = 0; x < usuarioInicioSesion.size(); x++){
-	     Usuario us = (Usuario) usuarioInicioSesion.get(x);
+	     Administrador us = (Administrador) usuarioInicioSesion.get(x);
 	     usuarioInicioSesionUSUARIO.add(us);
 	 }
-	//usuarioRetornado = (Usuario) usuarioInicioSesion.get(1);
+	//usuarioRetornado = (Administrador) usuarioInicioSesion.get(1);
 	try{
 	    user = usuarioInicioSesionUSUARIO.get(0);
 	    if(nombreUsuario.equalsIgnoreCase(user.getNombreUsuario()) && claveIntroducidaEnString.equalsIgnoreCase(user.getClave())){ //Si el usuario esta registrado, autentificar
@@ -49,7 +49,7 @@ public class ControladorInicioSesion extends ConexionHeredada {
 	return autentificado;	
     }
     
-    public Usuario getUser(){
+    public Administrador getUser(){
 	System.out.println(user.getNombre());
 	return user;
     }

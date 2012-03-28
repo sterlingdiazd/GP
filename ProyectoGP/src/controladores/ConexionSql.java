@@ -32,14 +32,19 @@ public class ConexionSql {
 	    conn = DriverManager.getConnection(datosConexion.getUrl(), datosConexion.getUser(), datosConexion.getPassword());
 	} catch (NullPointerException e){ 
 	    JOptionPane.showMessageDialog(null, "No se puso establecer conexion. Verifique si el servidor esta encendido.", "Error de Conexion", 1);
+	    System.exit(0);
 	} catch (SQLException e) {
-	    JOptionPane.showMessageDialog(null, e.getMessage(), "Error de Conexion", 1);
+	    JOptionPane.showMessageDialog(null, "No se puso establecer conexion. Verifique si el servidor esta encendido.", "Error de Conexion", 1);
+	    System.exit(0);
 	} catch (InstantiationException e) {
-	    JOptionPane.showMessageDialog(null, e.getMessage(), "Error de Conexion", 1);
+	    JOptionPane.showMessageDialog(null, "No se puso establecer conexion. Verifique si el servidor esta encendido.", "Error de Conexion", 1);
+	    System.exit(0);
 	} catch (IllegalAccessException e) {
-	    JOptionPane.showMessageDialog(null, e.getMessage(), "Error de Conexion", 1);
+	    JOptionPane.showMessageDialog(null, "No se puso establecer conexion. Verifique si el servidor esta encendido.", "Error de Conexion", 1);
+	    System.exit(0);
 	} catch (ClassNotFoundException e) {
-	    JOptionPane.showMessageDialog(null, e.getMessage(), "Error de Conexion", 1);
+	    JOptionPane.showMessageDialog(null, "No se puso establecer conexion. Verifique si el servidor esta encendido.", "Error de Conexion", 1);
+	    System.exit(0);
 	}
 	
     }

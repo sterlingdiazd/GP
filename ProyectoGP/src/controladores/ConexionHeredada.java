@@ -19,7 +19,7 @@ public class ConexionHeredada {
 	    stm = con.createStatement();
 	    conexion.disconnect();
 	} catch (SQLException e) {
-	    JOptionPane.showMessageDialog(null, e.getMessage(), "Error de Conexion", 1, new ImageIcon(ConexionHeredada.class.getResource("/images/information.png")));
+	    JOptionPane.showMessageDialog(null, "El servidor no esta encendido.", "Error de Conexion", 1, new ImageIcon(ConexionHeredada.class.getResource("/images/information.png")));
 	}
 	
     }

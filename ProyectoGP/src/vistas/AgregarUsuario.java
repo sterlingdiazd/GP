@@ -40,7 +40,6 @@ public class AgregarUsuario extends JDialog {
     private JLabel lblCedula;
     private JLabel lblPerfil;
     private JLabel lblClave_1;
-    private ControladorAgregarUsuario controladorAgregarUsuario;
     private JButton btnAgregar;
     private JButton btnCancelar;
     private JComboBox<Roles> comboBoxPerfil;
@@ -54,39 +53,29 @@ public class AgregarUsuario extends JDialog {
      */
     public AgregarUsuario() {
 
-    	setModal(true);
-    	setResizable(false);
     	setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-    	setTitle("Agregar Usuario");
+    	setTitle("Agregar Administrador");
 	setBounds(100, 100, 460, 360);
+	setModal(true);
+    	setResizable(false);
 	setLocationRelativeTo(null);
 	
 	initComponents();
 	
-	
 	txtIdusuario.setEnabled(false);
-	
-	//controladorAgregarUsuario = new ControladorAgregarUsuario(this);
 	actionListerner = new ControladorAgregarUsuario(this);
-	
 	btnAgregar.addActionListener(actionListerner);
 	btnCancelar.addActionListener(actionListerner);
 	
     }
 
-
-
     public ActionListener getActionListerner() {
         return actionListerner;
     }
 
-
-
     public void setActionListerner(ActionListener actionListerner) {
         this.actionListerner = actionListerner;
     }
-
-
 
     public void initComponents(){
 	getContentPane().setName("COmpoenente Content Pane");
@@ -102,7 +91,7 @@ public class AgregarUsuario extends JDialog {
 		contentPanel.add(panel_Campos);
 		panel_Campos.setLayout(null);
 		
-		JLabel lblIdUsuario = new JLabel("Id Usuario");
+		JLabel lblIdUsuario = new JLabel("Id Administrador");
 		lblIdUsuario.setHorizontalAlignment(SwingConstants.LEFT);
 		lblIdUsuario.setBounds(27, 27, 80, 14);
 		panel_Campos.add(lblIdUsuario);
@@ -112,7 +101,7 @@ public class AgregarUsuario extends JDialog {
 		panel_Campos.add(txtIdusuario);
 		txtIdusuario.setColumns(10);
 		
-		JLabel lblNombreDeUsuario = new JLabel("Nombre Usuario");
+		JLabel lblNombreDeUsuario = new JLabel("Nombre Administrador");
 		lblNombreDeUsuario.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblNombreDeUsuario.setBounds(27, 97, 80, 14);
 		panel_Campos.add(lblNombreDeUsuario);
@@ -203,7 +192,7 @@ public class AgregarUsuario extends JDialog {
 	panel_Funcionalidades.setBounds(10, 255, 434, 60);
 	FlowLayout fl_panel_Funcionalidades = (FlowLayout) panel_Funcionalidades.getLayout();
 	fl_panel_Funcionalidades.setVgap(-3);
-	panel_Funcionalidades.setBorder(new TitledBorder(null, "Agregar Usuario", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+	panel_Funcionalidades.setBorder(new TitledBorder(null, "Agregar Administrador", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 	contentPanel.add(panel_Funcionalidades);
 	
 	btnAgregar = new JButton("Agregar");
