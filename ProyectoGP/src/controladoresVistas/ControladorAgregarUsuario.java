@@ -3,17 +3,14 @@ package controladoresVistas;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
-
 import modelos.Administrador;
 import vistas.AgregarUsuario;
 import vistas.PerfilAdministrador;
 import controladores.ControladorAdministrador;
 import controladores.ControladorAutentificacion;
 import controladores.ControladorGenerico;
-import controladores.ControladorUsuario;
 
 public class ControladorAgregarUsuario implements ActionListener {
 

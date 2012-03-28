@@ -8,17 +8,12 @@ import java.awt.event.InputMethodListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.ArrayList;
-
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
 import javax.swing.UIManager;
 import javax.swing.border.TitledBorder;
-
 import modelos.Administrador;
 import tableModels.ModeloTablaEncontrados;
-import tableModels.UserTableModel;
 import vistas.AgregarUsuario;
 import vistas.PerfilAdministrador;
 import vistas.VistaPrincipal;
@@ -33,13 +28,6 @@ public class ControladorPerfilAdministrador implements ActionListener, KeyListen
     private AgregarUsuario vistaUsuario;
     private Administrador usuarioPorEditar;
     private int filaSeleccionada;
-    private Administrador usuarioPorBuscar;
-
-    private JTable table;
-    private ArrayList<Object> allUsers;
-    private String usuarioBuscado;
-    private JScrollPane scrollPane;
-
 
     public ControladorPerfilAdministrador(PerfilAdministrador pa){
 	this.perfilAdministrador = pa;
@@ -104,14 +92,6 @@ public class ControladorPerfilAdministrador implements ActionListener, KeyListen
 	vistaUsuario.getPanel_Funcionalidades().setBorder(new TitledBorder(null, "Editar Administrador", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 	vistaUsuario.getBtnAgregar().removeActionListener(vistaUsuario.getActionListerner());
 
-    }
-
-    public void crearUsuarioConCamposEscritosParaBuscar(){
-
-	usuarioPorBuscar = new Administrador(  vistaUsuario.getTxtIdusuario().getText(), vistaUsuario.getTxtNombre().getText(), 
-		vistaUsuario.getTxtApellido().getText(), vistaUsuario.getTxtNombreUsuario().getText(), vistaUsuario.getTxtClave().getText(), 
-		vistaUsuario.getComboBoxPerfil().getSelectedItem().toString(), vistaUsuario.getTxtCedula().getText(), 
-		vistaUsuario.getTxtTelefonos().getText(), vistaUsuario.getTxtDireccion().getText() );
     }
 
     public void cargarDatosEnCampos(){

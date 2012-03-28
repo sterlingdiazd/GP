@@ -15,7 +15,7 @@ public class PerfilAdministrador extends JDialog {
      */
     private static final long serialVersionUID = 1L;
     private final JPanel contentPanel = new JPanel();
-    private JTable table;
+    private JTable tableUsuarios;
     private UserTableModel userTableModel;
     private ArrayList<Object> allUsers;
 
@@ -29,7 +29,7 @@ public class PerfilAdministrador extends JDialog {
     private JMenuItem mntmManualDeUsuario;
     private JMenuItem mntmSalir;
     private JTextField txtBuscar;
-    private JScrollPane scrollPane;
+    private JScrollPane scrollPaneUsuarios;
 
     public PerfilAdministrador() {
 
@@ -74,20 +74,20 @@ public class PerfilAdministrador extends JDialog {
 
     public void configurarTablaAndScrollPane(){
 
-	table = new JTable();
-	table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-	table.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
-	table.setFillsViewportHeight(true);
-	table.setAlignmentX(Component.CENTER_ALIGNMENT);
-	table.setPreferredScrollableViewportSize(new Dimension(1000, 400));
-	table.setAutoCreateRowSorter(true);
-	table.setModel(userTableModel);
+	tableUsuarios = new JTable();
+	tableUsuarios.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+	tableUsuarios.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
+	tableUsuarios.setFillsViewportHeight(true);
+	tableUsuarios.setAlignmentX(Component.CENTER_ALIGNMENT);
+	tableUsuarios.setPreferredScrollableViewportSize(new Dimension(1000, 400));
+	tableUsuarios.setAutoCreateRowSorter(true);
+	tableUsuarios.setModel(userTableModel);
 
-	scrollPane = new JScrollPane();
-	scrollPane.setAutoscrolls(true);
-	scrollPane.setEnabled(false);
-	scrollPane.setBounds(10, 20, 719, 305);
-	scrollPane.setViewportView(table);
+	scrollPaneUsuarios = new JScrollPane();
+	scrollPaneUsuarios.setAutoscrolls(true);
+	scrollPaneUsuarios.setEnabled(false);
+	scrollPaneUsuarios.setBounds(10, 20, 719, 305);
+	scrollPaneUsuarios.setViewportView(tableUsuarios);
     }
 
     public void initComponents(){
@@ -99,62 +99,78 @@ public class PerfilAdministrador extends JDialog {
 	tabbedPane.setBounds(10, 54, 764, 476);
 	contentPanel.add(tabbedPane);
 
-	JPanel panel_2 = new JPanel();
-	panel_2.setBounds(new Rectangle(1000, 0, 0, 0));
-	panel_2.setSize(new Dimension(1500, 0));
-	panel_2.setToolTipText("Usuarios");
-	tabbedPane.addTab("Usuarios", new ImageIcon(PerfilAdministrador.class.getResource("/imagenes/usuario.png")), panel_2, "Mantenimiento de Usuarios");
+	JPanel panelUsuarios = new JPanel();
+	panelUsuarios.setBounds(new Rectangle(1000, 0, 0, 0));
+	panelUsuarios.setSize(new Dimension(1500, 0));
+	panelUsuarios.setToolTipText("Usuarios");
+	tabbedPane.addTab("Usuarios", new ImageIcon(PerfilAdministrador.class.getResource("/imagenes/usuario.png")), panelUsuarios, "Mantenimiento de Usuarios");
 	tabbedPane.setDisplayedMnemonicIndexAt(0, 1);
 	tabbedPane.setMnemonicAt(0, 1);
-	panel_2.setLayout(null);
+	panelUsuarios.setLayout(null);
 
-	JPanel panel = new JPanel();
-	panel.setAutoscrolls(true);
-	panel.setBounds(new Rectangle(0, 0, 600, 0));
-	panel.setBounds(10, 75, 739, 336);
-	panel_2.add(panel);
-	panel.setBorder(new TitledBorder(null, "Listado de Empleados", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(128, 0, 0)));
-	panel.setBackground(SystemColor.control);
-	panel.setLayout(null);
-	panel.add(scrollPane);
+	JPanel panelTablaUsuarios = new JPanel();
+	panelTablaUsuarios.setAutoscrolls(true);
+	panelTablaUsuarios.setBounds(new Rectangle(0, 0, 600, 0));
+	panelTablaUsuarios.setBounds(10, 75, 739, 336);
+	panelUsuarios.add(panelTablaUsuarios);
+	panelTablaUsuarios.setBorder(new TitledBorder(null, "Listado de Empleados", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(128, 0, 0)));
+	panelTablaUsuarios.setBackground(SystemColor.control);
+	panelTablaUsuarios.setLayout(null);
+	panelTablaUsuarios.add(scrollPaneUsuarios);
 
-	JPanel panel_1 = new JPanel();
-	FlowLayout flowLayout = (FlowLayout) panel_1.getLayout();
-	flowLayout.setVgap(0);
-	panel_1.setBounds(10, 5, 739, 65);
-	panel_2.add(panel_1);
-	panel_1.setBorder(new TitledBorder(null, "Funcionalidades", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+	JPanel panelFuncionalidadesUsuarios = new JPanel();
+	FlowLayout fl_panel_Funcionalidades = (FlowLayout) panelFuncionalidadesUsuarios.getLayout();
+	fl_panel_Funcionalidades.setVgap(0);
+	panelFuncionalidadesUsuarios.setBounds(10, 5, 739, 65);
+	panelUsuarios.add(panelFuncionalidadesUsuarios);
+	panelFuncionalidadesUsuarios.setBorder(new TitledBorder(null, "Funcionalidades", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 
 	btnAgregar = new JButton("Agregar");
 	btnAgregar.setIcon(new ImageIcon(PerfilAdministrador.class.getResource("/imagenes/add.png")));
-	panel_1.add(btnAgregar);
+	panelFuncionalidadesUsuarios.add(btnAgregar);
 
 	btnEditar = new JButton("Editar");
 	btnEditar.setIcon(new ImageIcon(PerfilAdministrador.class.getResource("/imagenes/edit.png")));
-	panel_1.add(btnEditar);
+	panelFuncionalidadesUsuarios.add(btnEditar);
 
 	btnEliminar = new JButton("Eliminar");
 	btnEliminar.setIcon(new ImageIcon(PerfilAdministrador.class.getResource("/imagenes/delete copia.png")));
-	panel_1.add(btnEliminar);
+	panelFuncionalidadesUsuarios.add(btnEliminar);
 
 	txtBuscar = new JTextField();
 	txtBuscar.setText(null);
-	panel_1.add(txtBuscar);
+	panelFuncionalidadesUsuarios.add(txtBuscar);
 	txtBuscar.setColumns(10);
 
 	btnBuscar = new JButton("Buscar");
 	btnBuscar.setIcon(new ImageIcon(PerfilAdministrador.class.getResource("/imagenes/search.png")));
-	panel_1.add(btnBuscar);
+	panelFuncionalidadesUsuarios.add(btnBuscar);
+	
+	JPanel panelEnfermedades = new JPanel();
+	panelEnfermedades.setBounds(new Rectangle(1000, 0, 0, 0));
+	panelEnfermedades.setSize(new Dimension(1500, 0));
+	panelEnfermedades.setToolTipText("Usuarios");
+	tabbedPane.addTab("Usuarios", new ImageIcon(PerfilAdministrador.class.getResource("/imagenes/usuario.png")), panelEnfermedades, "Mantenimiento de Usuarios");
+	tabbedPane.setDisplayedMnemonicIndexAt(0, 1);
+	tabbedPane.setMnemonicAt(0, 1);
+	panelEnfermedades.setLayout(null);
 
+	JPanel panelTablaEnfermedades = new JPanel();
+	panelTablaEnfermedades.setAutoscrolls(true);
+	panelTablaEnfermedades.setBounds(new Rectangle(0, 0, 600, 0));
+	panelTablaEnfermedades.setBounds(10, 75, 739, 336);
+	panelEnfermedades.add(panelTablaEnfermedades);
+	panelTablaEnfermedades.setBorder(new TitledBorder(null, "Listado de Empleados", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(128, 0, 0)));
+	panelTablaEnfermedades.setBackground(SystemColor.control);
+	panelTablaEnfermedades.setLayout(null);
+	panelTablaEnfermedades.add(scrollPaneUsuarios);
 
-	JPanel panel_3 = new JPanel();
-	tabbedPane.addTab("Productos", new ImageIcon(PerfilAdministrador.class.getResource("/imagenes/products.png")), panel_3, "Mantenimiento de Productos");
-	tabbedPane.setMnemonicAt(1, 2);
-	tabbedPane.setDisplayedMnemonicIndexAt(1, 2);
-
-	JPanel panel_4 = new JPanel();
-	tabbedPane.addTab("New tab", new ImageIcon(PerfilAdministrador.class.getResource("/imagenes/estadisticas.png")), panel_4, null);
-
+	JPanel panelFuncionalidadesEnfermedades = new JPanel();
+	fl_panel_Funcionalidades.setVgap(0);
+	panelFuncionalidadesEnfermedades.setBounds(10, 5, 739, 65);
+	panelEnfermedades.add(panelFuncionalidadesEnfermedades);
+	panelFuncionalidadesEnfermedades.setBorder(new TitledBorder(null, "Funcionalidades", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+	
 	JPanel panel_6 = new JPanel();
 	panel_6.setBorder(new TitledBorder(null, "Datos del Administrador", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 	panel_6.setBounds(10, 5, 764, 45);
@@ -182,11 +198,11 @@ public class PerfilAdministrador extends JDialog {
     }
 
     public JScrollPane getScrollPane() {
-	return scrollPane;
+	return scrollPaneUsuarios;
     }
 
     public void setScrollPane(JScrollPane scrollPane) {
-	this.scrollPane = scrollPane;
+	this.scrollPaneUsuarios = scrollPane;
     }
 
     public UserTableModel getUserTableModel() {
@@ -226,11 +242,11 @@ public class PerfilAdministrador extends JDialog {
     }
 
     public JTable getTable() {
-	return table;
+	return tableUsuarios;
     }
 
     public void setTable(JTable table) {
-	this.table = table;
+	this.tableUsuarios = table;
     }
 
     public ArrayList<Object> getAllUsers() {

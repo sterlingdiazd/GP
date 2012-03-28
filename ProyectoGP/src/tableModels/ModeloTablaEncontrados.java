@@ -1,14 +1,8 @@
 package tableModels;
 
-import controladores.ControladorAdministrador;
-import controladores.ControladorGenerico;
-import controladores.ControladorUsuario;
 import java.util.ArrayList;
-
 import javax.swing.table.AbstractTableModel;
-
 import enums.Usuarios;
-
 import modelos.Administrador;
 
 /**
@@ -20,8 +14,6 @@ import modelos.Administrador;
 public class ModeloTablaEncontrados extends AbstractTableModel {
     
     private static final long serialVersionUID = 1L;
-   
-    private ControladorGenerico controlador;
     private ArrayList<Object> allUsers = new ArrayList<Object>();
 
     String [] encabezados = {Usuarios.IDUSUARIO.getText(), Usuarios.NOMBRE.getText(),Usuarios.APELLIDO.getText(), 
@@ -31,7 +23,6 @@ public class ModeloTablaEncontrados extends AbstractTableModel {
     public ModeloTablaEncontrados(ArrayList<Object> allUsers){
 	super(); 
 	this.allUsers = allUsers;
-	controlador = new ControladorAdministrador();
     }
     
     @Override
