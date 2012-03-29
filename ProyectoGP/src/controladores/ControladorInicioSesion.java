@@ -16,13 +16,13 @@ public class ControladorInicioSesion extends ConexionHeredada {
     
     @SuppressWarnings("unused") // No se usa en esta clase, porque en el constructor de la clase que instancia, se utiliza y transforma. Otras variables transformadas por esta variables, si se utilizan.
     private ConexionHeredada conexion = new ConexionHeredada();
-    private ControladorUsuario controladorUsuario;
+    private MantenimientoUsuario controladorUsuario;
     private Administrador user;
     private ArrayList<Object> usuarioInicioSesion;
     private ArrayList<Administrador> usuarioInicioSesionUSUARIO;
     
     public ControladorInicioSesion(){
-	controladorUsuario = new ControladorUsuario();
+	controladorUsuario = new MantenimientoUsuario();
 	usuarioInicioSesion =  new ArrayList<Object>();
 	usuarioInicioSesionUSUARIO = new ArrayList<Administrador>();
     }

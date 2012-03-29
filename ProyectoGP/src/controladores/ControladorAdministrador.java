@@ -4,7 +4,7 @@ public class ControladorAdministrador extends ControladorGenerico {
 
     public ControladorAdministrador() {
 	super();
-	mantenimiento = new ControladorUsuario();
+	mantenimiento = new MantenimientoUsuario();
     }
 
     
